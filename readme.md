@@ -1,4 +1,4 @@
-# [gulp](http://gulpjs.com)-bemjson [![Build Status](https://travis-ci.org/molforp/gulp-bemjson.svg?branch=master)](https://travis-ci.org/molforp/gulp-bemjson)
+# [gulp](http://gulpjs.com)-bemjson [![Build Status][travImg]][travUrl] [![Dependency Status][davidImg]][davidUrl]
 
 Process BEMJSON to HTML with [BH](https://github.com/enb-make/bh)
 
@@ -64,3 +64,9 @@ What is it [BEM](http://bem.info/)?
 ## License
 
 MIT © [Dmitry Kokorev](https://github.com/molforp)
+
+[travUrl]: https://travis-ci.org/molforp/gulp-bemjson
+[travImg]: http://img.shields.io/travis/molforp/gulp-bemjson.svg?branch=master&style=flat-square
+
+[davidUrl]: https://david-dm.org/molforp/gulp-bemjson
+[davidImg]: http://img.shields.io/david/molforp/gulp-bemjson.svg?branch=master&style=flat-square
