@@ -1,6 +1,6 @@
 {
   "name": "gulp-bemjson",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Gulp plugin for process bemjson to html",
   "license": "MIT",
   "repository": "molforp/gulp-bemjson",
