@@ -24,7 +24,7 @@ it('should process BEMJSON to HTML', function(cb) {
     stream.end();
 });
 
-it('should process BEMJSON to HTML and BH templates', function(cb) {
+it('should process BEMJSON to HTML with BH templates', function(cb) {
     var stream = bemjson();
 
     stream.on('data', function(file) {

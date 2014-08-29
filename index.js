@@ -1,11 +1,13 @@
 'use strict';
 var gutil = require('gulp-util'),
     through = require('through2'),
-    BH = new (require('bh').BH),
+    BH = require('bh').BH,
     path = require('path');
 
-module.exports = function() {
+module.exports = function(options) {
     return through.obj(function(file, enc, cb) {
+        var newBH = new BH();
+
         if (file.isStream()) {
             this.emit('error', new gutil.PluginError('gulp-bemjson', 'Streaming not supported'));
             cb();
@@ -23,9 +25,9 @@ module.exports = function() {
                 return;
             }
 
-            bh && bh(BH);
+            bh && bh(newBH);
 
-            file.contents = new Buffer(BH.apply(obj.bemjson));
+            file.contents = new Buffer(newBH.apply(obj.bemjson));
             file.path = path.join(path.dirname(file.path), path.basename(file.path, '.bemjson.js') + '.html');
             this.push(file);
         } catch(err) {
