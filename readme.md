@@ -16,7 +16,7 @@ var gulp = require('gulp');
 var bemjson = require('gulp-bemjson');
 
 gulp.task('default', function () {
-	return gulp.src('src/index.bemjson.js')
+	return gulp.src('src/index.bemjson.js', { read: false })
 		.pipe(bemjson())
 		.pipe(gulp.dest('dist'));
 });
