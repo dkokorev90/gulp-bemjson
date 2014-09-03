@@ -6,7 +6,8 @@ var gutil = require('gulp-util'),
 
 module.exports = function(options) {
     return through.obj(function(file, enc, cb) {
-        var newBH = new BH();
+        var newBH = new BH(),
+            filePath = file.path;
 
         if (file.isStream()) {
             this.emit('error', new gutil.PluginError('gulp-bemjson', 'Streaming not supported'));
@@ -14,8 +15,11 @@ module.exports = function(options) {
             return;
         }
 
+        // with livereload bemjson object was cached
+        require.cache[filePath] && delete require.cache[filePath];
+
         try {
-            var obj = require(file.path),
+            var obj = require(filePath),
                 bemjson = obj.bemjson,
                 bh = obj.bh;
 
@@ -28,10 +32,10 @@ module.exports = function(options) {
             bh && bh(newBH);
 
             file.contents = new Buffer(newBH.apply(obj.bemjson));
-            file.path = path.join(path.dirname(file.path), path.basename(file.path, '.bemjson.js') + '.html');
+            file.path = path.join(path.dirname(filePath), path.basename(filePath, '.bemjson.js') + '.html');
             this.push(file);
         } catch(err) {
-            this.emit('error', new gutil.PluginError('gulp-bemjson', err, { filePath: file.path }));
+            this.emit('error', new gutil.PluginError('gulp-bemjson', err));
         }
 
         cb();
